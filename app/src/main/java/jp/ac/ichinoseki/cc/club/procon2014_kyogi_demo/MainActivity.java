@@ -4,14 +4,21 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
+
+        final Activity activity = this;
+        TextView appTitle = (TextView)this.findViewById(R.id.app_title);
+        appTitle.setText("第25回\n全国高専\nプログラミングコンテスト\n競技部門\nデモアプリ");
+        appTitle.setTextSize(36f);
     }
 
 
