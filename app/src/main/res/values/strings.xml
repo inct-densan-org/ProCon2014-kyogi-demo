@@ -7,5 +7,6 @@
     <string name="app"></string>
     <string name="app_title">第25回\n全国高専\nプログラミングコンテスト\n競技部門\nデモアプリ</string>
     <string name="explain_kyogi">競技部門 ルール説明</string>
+    <string name="title_activity_explain">ExplainActivity</string>
 
 </resources>
