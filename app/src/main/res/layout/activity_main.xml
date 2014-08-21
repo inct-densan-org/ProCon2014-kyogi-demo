@@ -25,7 +25,7 @@
         android:width="400sp"
         android:height="80sp"
         android:textSize="36sp"
-        android:text="@string/explain_kyogi"
+        android:text="@string/title_activity_explain"
         android:id="@+id/explain_Button"
         android:layout_centerInParent="true"
         android:gravity="center"
