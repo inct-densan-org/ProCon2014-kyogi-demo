@@ -1,6 +1,7 @@
 package jp.ac.ichinoseki.cc.club.procon2014_kyogi_demo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.view.Menu;
@@ -19,6 +20,9 @@ public class MainActivity extends Activity {
     }
 
     public void doExplain(View view) {
+        final Activity activity = this;
+        Intent intent = new Intent(activity, jp.ac.ichinoseki.cc.club.procon2014_kyogi_demo.ExplainActivity.class);
+        activity.startActivity(intent);
     }
 
     @Override
