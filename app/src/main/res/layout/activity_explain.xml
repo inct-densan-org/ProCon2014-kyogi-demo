@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/title_activity_explain"
-            android:textSize="32sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"

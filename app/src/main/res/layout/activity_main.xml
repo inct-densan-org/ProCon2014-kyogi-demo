@@ -11,7 +11,7 @@
 
     <TextView
         android:text="@string/app_title"
-        android:textSize="36sp"
+        android:textSize="24sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -22,9 +22,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="400sp"
-        android:height="80sp"
-        android:textSize="36sp"
+        android:width="250sp"
+        android:height="24dp"
+        android:textSize="18sp"
         android:text="@string/title_activity_explain"
         android:id="@+id/explain_Button"
         android:layout_centerInParent="true"
