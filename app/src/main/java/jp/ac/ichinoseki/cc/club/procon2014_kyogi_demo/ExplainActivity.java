@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 
 
@@ -16,6 +17,8 @@ public class ExplainActivity extends Activity {
         setContentView(R.layout.activity_explain);
     }
 
+    public void doExperience(View view) {
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
