@@ -1,34 +1,29 @@
 package jp.ac.ichinoseki.cc.club.procon2014_kyogi_demo;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.TextView;
 
 
-public class MainActivity extends Activity {
+public class ExplainActivity extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_explain);
     }
 
-    public void doExplain(View view) {
-        final Activity activity = this;
-        Intent intent = new Intent(activity, jp.ac.ichinoseki.cc.club.procon2014_kyogi_demo.ExplainActivity.class);
-        activity.startActivity(intent);
+    public void doExperience(View view) {
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.explain, menu);
         return true;
     }
 
