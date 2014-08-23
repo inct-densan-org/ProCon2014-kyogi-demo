@@ -6,6 +6,22 @@
     <string name="action_settings">Settings</string>
     <string name="app"></string>
     <string name="app_title">第25回\n全国高専\nプログラミングコンテスト\n競技部門\nデモアプリ</string>
-    <string name="title_activity_explain">競技部門 ルール説明</string>
-    <string name="explain_kyogi"></string>
+    <string name="title_activity_explain">競技部門 内容(ルール説明)</string>
+    <string name="explain_kyogi">1枚の原画像から同サイズに切り分けられた断片画像をバラバラに並べた問題画像を，元の画像に並べ替えるパズルゲームです。</string>
+    <string name="explain_detail_kyogi1">
+        以下からは、詳細な内容になります。
+        これらの内容は全て、全国高専プログラミングコンテストの公式ホームページで公開されていう内容を参考に作られているので、もっと詳しく知りたい人は、以下のURLを参照してください。\n
+        <a href="http://http://www.procon.gr.jp/modules/procon25/item.php?itemid=18">http://www.procon.gr.jp/modules/procon25/item.php?itemid=18</a>
+     </string>
+    <string name="explain_detail_kyogi2">
+        競技開始時に、選手には一枚の画像が渡されます。この画像は、n×m(nやmは最大16)の大きさに分割されてシャッフルされたものをまた連結したものになっています。
+        これらの画像を隣り合った画像と位置を交換していき、並べ替えるのが今回の競技内容となっています。\n
+        並べ替える際には、移動する画像を選択する選択コスト(1～300の範囲)と、画像を交換する交換コスト(1～100の範囲)という二種類のコストが発生します。
+        制限時間内にこのコストを少なく、正しく画像を並び替えたチームの勝ちとなります。
+        選択コストや交換コストは、競技開始時に発表されます。\n
+    </string>
+    <string name="explain_detail_kyogi3">
+        では、実際に画像を並び替える作業をやってみましょう。
+    </string>
+    <string name="experience_button">体験してみる</string>
 </resources>
