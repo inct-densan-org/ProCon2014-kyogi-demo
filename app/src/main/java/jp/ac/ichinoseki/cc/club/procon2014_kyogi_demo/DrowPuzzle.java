@@ -1,33 +1,26 @@
 package jp.ac.ichinoseki.cc.club.procon2014_kyogi_demo;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.view.Window;
 
 
-public class ExplainActivity extends Activity {
+public class DrowPuzzle extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_explain);
+        setContentView(R.layout.activity_drow_puzzle);
     }
 
-    public void doExperience(View view) {
-        final Activity activity = this;
-        Intent intent = new Intent(activity, DrowPuzzle.class);
-        activity.startActivity(intent);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.explain, menu);
+        getMenuInflater().inflate(R.menu.dorow_puzzle, menu);
         return true;
     }
 
