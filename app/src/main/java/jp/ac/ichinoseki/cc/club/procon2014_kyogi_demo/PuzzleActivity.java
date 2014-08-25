@@ -35,6 +35,8 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
     private WindowManager wm;
     private int chooseCost;
     private int swapCost;
+    private int maxChooseCost;
+    private int currentChooseCost;
     private int totalChooseCost;
     private int totalSwapCost;
     private int splitWidth;
@@ -112,10 +114,12 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
         totalSwapCost = 0;
         splitWidth = rand.nextInt(3) + 2;
         splitHeight = rand.nextInt(3) + 2;
+        currentChooseCost = 0;
+        maxChooseCost = rand.nextInt(5) + splitWidth * splitHeight - 3;
 
         new AlertDialog.Builder(getContext())
                 .setTitle("パズル情報")
-                .setMessage(splitHeight + "x" + splitWidth + "のパズル" + "\n選択コスト: " + chooseCost + "\n交換コスト: " + swapCost)
+                .setMessage(splitHeight + "x" + splitWidth + "のパズル" + "\n制限時間はありません" + "\n選択可能回数: " + maxChooseCost + "\n選択コスト: " + chooseCost + "\n交換コスト: " + swapCost + "\n時間コストは計測しません")
                 .setPositiveButton(
                         "OK",
                         new DialogInterface.OnClickListener() {
@@ -205,9 +209,25 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
 
         holder.unlockCanvasAndPost(canvas);
 
+        if (clearFlag == 3) {
+            new AlertDialog.Builder(getContext())
+                    .setTitle("選択可能回数を超えました")
+                    .setMessage("失敗です")
+                    .setPositiveButton(
+                            "OK",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                }
+                            })
+                    .show();
+            clearFlag = 2;
+        }
+
         if (clearFlag == 1) {
             new AlertDialog.Builder(getContext())
                     .setTitle("クリアしました")
+                    .setMessage("おめでとうございます\n合計コストは " + (chooseCost + swapCost) + " です")
                     .setPositiveButton(
                             "OK",
                             new DialogInterface.OnClickListener() {
@@ -250,6 +270,7 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
 
                 if (endFlag) {
                     totalChooseCost += chooseCost;
+                    currentChooseCost += 1;
                 }
 
                 drawPuzzle();
@@ -302,6 +323,10 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
                         }
                     }
 
+                }
+
+                if (clearFlag == 0 && currentChooseCost == maxChooseCost) {
+                    clearFlag = 3;
                 }
 
                 drawPuzzle();
