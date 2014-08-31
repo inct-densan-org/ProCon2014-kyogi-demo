@@ -227,7 +227,7 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
         if (clearFlag == 1) {
             new AlertDialog.Builder(getContext())
                     .setTitle("クリアしました")
-                    .setMessage("おめでとうございます\n合計コストは " + (chooseCost + swapCost) + " です")
+                    .setMessage("おめでとうございます\n合計コストは " + (totalChooseCost + totalSwapCost) + " です" + "\n(時間コストは含んでません)")
                     .setPositiveButton(
                             "OK",
                             new DialogInterface.OnClickListener() {
