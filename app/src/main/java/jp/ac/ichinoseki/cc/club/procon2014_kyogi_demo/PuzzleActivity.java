@@ -36,7 +36,8 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
     private int chooseCost;
     private int swapCost;
     private int maxChooseCost;
-    private int currentChooseCost;
+    private int currentChooseCount;
+    private int currentSwapCount;
     private int totalChooseCost;
     private int totalSwapCost;
     private int splitWidth;
@@ -114,8 +115,10 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
         totalSwapCost = 0;
         splitWidth = rand.nextInt(3) + 2;
         splitHeight = rand.nextInt(3) + 2;
-        currentChooseCost = 0;
-        maxChooseCost = rand.nextInt(5) + splitWidth * splitHeight - 3;
+        currentChooseCount = 0;
+        currentSwapCount = 0;
+        maxChooseCost = rand.nextInt(5) + splitWidth * splitHeight - 2;
+        touchPositionNumber = -1;
 
         new AlertDialog.Builder(getContext())
                 .setTitle("パズル情報")
@@ -149,6 +152,10 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
         puzzleWidth = p.x - (p.x % splitWidth);
         puzzleHeight = p.x - (p.x % splitHeight);
         drowY = p.y / 2 - puzzleHeight / 2;
+
+        if(drowY < 360 + 20){
+            drowY = 360 + 20;
+        }
 
         image = Bitmap.createScaledBitmap(image, puzzleWidth, puzzleHeight, false);
 
@@ -191,8 +198,24 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
         canvas.drawLines(arr, paint);
         float[] arr2 = new float[] {0, 120, 800, 120, 800, 120, 800, 180, 800, 180, 0, 180};
         canvas.drawLines(arr2, paint);
-        canvas.drawText("合計選択コスト: " + Integer.toString(totalChooseCost), 60, 100, paint);
-        canvas.drawText("合計交換コスト: " + Integer.toString(totalSwapCost), 60, 160, paint);
+        float[] arr3 = new float[] {0, 180, 800, 180, 800, 180, 800, 240, 800, 240, 0, 240};
+        canvas.drawLines(arr3, paint);
+        float[] arr4 = new float[] {0, 240, 800, 240, 800, 240, 800, 300, 800, 300, 0, 300};
+        canvas.drawLines(arr4, paint);
+        float[] arr5 = new float[] {0, 300, 800, 300, 800, 300, 800, 360, 800, 360, 0, 360};
+        canvas.drawLines(arr5, paint);
+        canvas.drawText("最大選択回数: " + Integer.toString(maxChooseCost), 60, 100, paint);
+        canvas.drawText("現在選択回数: " + Integer.toString(currentChooseCount), 60, 160, paint);
+        canvas.drawText("現在交換回数: " + Integer.toString(currentSwapCount), 60, 220, paint);
+        canvas.drawText("合計選択コスト: " + Integer.toString(totalChooseCost), 60, 280, paint);
+        canvas.drawText("合計交換コスト: " + Integer.toString(totalSwapCost), 60, 340, paint);
+
+        paint.setColor(Color.RED);
+        paint.setStyle((Paint.Style.STROKE));
+        paint.setStrokeWidth(8);
+
+        int xTouchPosition = 0;
+        int yTouchPosition = 0;
 
         drowX = 0;
         int x = 0, y = drowY;
@@ -204,7 +227,20 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
             else if (i > 0){
                 x += xRawSize;
             }
+
+            if(touchPositionNumber == i){
+                xTouchPosition = x;
+                yTouchPosition = y;
+            }
+
+            canvas.drawRect(x, y, x+xRawSize, y+yRawSize, paint);
             canvas.drawBitmap(puzzleList[shuffleList[i]], x, y, paint);
+        }
+
+        if(touchPositionNumber != -1){
+            //canvas.drawRect(xTouchPosition, yTouchPosition, x+xRawSize, y+yRawSize, paint);
+            paint.setStrokeWidth(12);
+            canvas.drawRect(xTouchPosition, yTouchPosition, xTouchPosition+xRawSize, yTouchPosition+yRawSize, paint);
         }
 
         holder.unlockCanvasAndPost(canvas);
@@ -270,7 +306,7 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
 
                 if (endFlag) {
                     totalChooseCost += chooseCost;
-                    currentChooseCost += 1;
+                    currentChooseCount += 1;
                 }
 
                 drawPuzzle();
@@ -307,11 +343,14 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
 
                     touchPositionNumber = diffTouchPositionNumber;
                     totalSwapCost += swapCost;
+                    currentSwapCount += 1;
                     drawPuzzle();
                 }
                 break;
 
-            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_UP:;
+                touchPositionNumber = -1;
+
                 if (!endFlag) break;
 
                 if (clearFlag == 0) {
@@ -325,7 +364,7 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
 
                 }
 
-                if (clearFlag == 0 && currentChooseCost == maxChooseCost) {
+                if (clearFlag == 0 && currentChooseCount == maxChooseCost) {
                     clearFlag = 3;
                 }
 
