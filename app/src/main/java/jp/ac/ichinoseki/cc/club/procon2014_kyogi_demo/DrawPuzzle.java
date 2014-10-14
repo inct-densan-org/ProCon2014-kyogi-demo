@@ -7,7 +7,7 @@ import android.view.MenuItem;
 import android.view.Window;
 
 
-public class DrowPuzzle extends Activity {
+public class DrawPuzzle extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

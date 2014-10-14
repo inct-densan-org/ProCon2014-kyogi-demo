@@ -5,14 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 
 public class MainActivity extends Activity {
@@ -36,7 +34,7 @@ public class MainActivity extends Activity {
 
     public void doExperience(View view) {
         final Activity activity = this;
-        Intent intent = new Intent(activity, DrowPuzzle.class);
+        Intent intent = new Intent(activity, DrawPuzzle.class);
         activity.startActivity(intent);
     }
 
