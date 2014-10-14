@@ -20,7 +20,7 @@ public class ExplainActivity extends Activity {
 
     public void doExperience(View view) {
         final Activity activity = this;
-        Intent intent = new Intent(activity, DrowPuzzle.class);
+        Intent intent = new Intent(activity, DrawPuzzle.class);
         activity.startActivity(intent);
     }
 
