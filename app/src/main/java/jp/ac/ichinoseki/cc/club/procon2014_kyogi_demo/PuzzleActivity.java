@@ -181,9 +181,15 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
             shuffleList[i] = i;
         }
 
-        List<Integer> list  = Arrays.asList(shuffleList);
+        /*List<Integer> list  = Arrays.asList(shuffleList);
         Collections.shuffle(list);
-        shuffleList = (Integer[])list.toArray(new Integer[list.size()]);
+        shuffleList = (Integer[])list.toArray(new Integer[list.size()]);*/
+        for(int i = shuffleList.length -1; i > 0; i--) {
+            int index = rand.nextInt(i+1);
+            int tmp = shuffleList[index];
+            shuffleList[index] = shuffleList[i];
+            shuffleList[i] = tmp;
+        }
     }
 
     public void drawPuzzle() {
