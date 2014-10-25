@@ -194,16 +194,6 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
         paint.setColor(Color.BLACK);
         paint.setTextSize(40);
         paint.setStrokeWidth(10);
-        float[] arr = new float[]{0, 60, 800, 60, 800, 60, 800, 120, 800, 120, 0, 120};
-        canvas.drawLines(arr, paint);
-        float[] arr2 = new float[] {0, 120, 800, 120, 800, 120, 800, 180, 800, 180, 0, 180};
-        canvas.drawLines(arr2, paint);
-        float[] arr3 = new float[] {0, 180, 800, 180, 800, 180, 800, 240, 800, 240, 0, 240};
-        canvas.drawLines(arr3, paint);
-        float[] arr4 = new float[] {0, 240, 800, 240, 800, 240, 800, 300, 800, 300, 0, 300};
-        canvas.drawLines(arr4, paint);
-        float[] arr5 = new float[] {0, 300, 800, 300, 800, 300, 800, 360, 800, 360, 0, 360};
-        canvas.drawLines(arr5, paint);
         canvas.drawText("最大選択回数: " + Integer.toString(maxChooseCost), 60, 100, paint);
         canvas.drawText("現在選択回数: " + Integer.toString(currentChooseCount), 60, 160, paint);
         canvas.drawText("現在交換回数: " + Integer.toString(currentSwapCount), 60, 220, paint);
