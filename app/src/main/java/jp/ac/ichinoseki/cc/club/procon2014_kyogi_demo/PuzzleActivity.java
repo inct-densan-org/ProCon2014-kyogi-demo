@@ -54,6 +54,7 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
     private int touchPositionNumber;
     private boolean endFlag;
     private int clearFlag = 0;
+    private boolean chooseFlag;
 
     public PuzzleActivity(Context context) {
         super(context);
@@ -275,10 +276,14 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                if(drowY > y) break;
+                if(drowY+puzzleHeight < y) break;
+
                 int nx = xRawSize;
                 int ny = drowY + yRawSize;
                 touchPositionNumber = 0;
                 endFlag = false;
+                chooseFlag = false;
                 for (int i = 0; i < splitHeight; i++) {
                     for (int j = 0; j < splitWidth; j++) {
                         if (x < nx && y < ny) {
@@ -292,11 +297,6 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
 
                     nx = xRawSize;
                     ny += yRawSize;
-                }
-
-                if (endFlag) {
-                    totalChooseCost += chooseCost;
-                    currentChooseCount += 1;
                 }
 
                 drawPuzzle();
@@ -326,6 +326,12 @@ public class PuzzleActivity extends SurfaceView implements SurfaceHolder.Callbac
                 }
 
                 if (diffEndFlag && touchPositionNumber != diffTouchPositionNumber) {
+                    if(chooseFlag == false){
+                        totalChooseCost += chooseCost;
+                        currentChooseCount += 1;
+                        chooseFlag = true;
+                    }
+
                     int tmp;
                     tmp = shuffleList[touchPositionNumber];
                     shuffleList[touchPositionNumber] = shuffleList[diffTouchPositionNumber];
